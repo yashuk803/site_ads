@@ -64,37 +64,26 @@
         </style>
     </head>
     <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <!-- Заголовок -->
+            <div class="navbar-header">
+                ...
+            </div>
+            <!-- Основная часть меню (может содержать ссылки, формы и другие элементы) -->
+            <div class="collapse navbar-collapse" id="navbar-main">
+                <!-- Содержимое основной части -->
 
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">Ссылка 1</a></li>
+                    <li><a href="#">Ссылка 2</a></li>
+                    <li><a href="#">Ссылка 3</a></li>
+                    <li><a href="#">Ссылка 4</a></li>
+                    <li><a href="#">Ссылка 5</a></li>
+                </ul>
 
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
-                </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://vapor.laravel.com">Vapor</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
             </div>
         </div>
+    </nav>
     </body>
 </html>
