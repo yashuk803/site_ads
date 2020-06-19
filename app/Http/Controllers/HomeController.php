@@ -2,19 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Entities\Ad;
-use Illuminate\Http\Request;
+use App\Actions\Ad\AdCollectionAction;
 
 class HomeController extends Controller
 {
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
+    private $adCollectionAction;
+
+    public function __construct(AdCollectionAction $adCollectionAction)
+    {
+        $this->adCollectionAction = $adCollectionAction;
+    }
+
     public function index()
     {
-        $ads = Ad::latest()->paginate(5);
+        $ads = $this->adCollectionAction->execute();
 
         return view('home',compact('ads'));
     }

@@ -5,6 +5,10 @@
         @auth
             Welcome
         @else
+
+
+
+
             <form method="post" action="{{ route('auth.login') }}">
                 @csrf
                 <div class="form-group">

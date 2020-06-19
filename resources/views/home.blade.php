@@ -28,10 +28,10 @@
                 <div class="col-md-4">
                     <div class="card" style="margin-bottom: 10px">
                         <div class="card-body" style="padding: 10px;">
-                            <h5 class="card-title">{{ $ad->title }}</h5>
+
+                            <h5 class="card-title"> <a target="_blank" href="{{ route('ad.show', ['id' => $ad->id]) }}">{{ $ad->title }}</a></h5>
                             <h6 class="card-subtitle mb-2 text-muted">{{ $ad->author->username }} / {{ $ad->getFromDateAttribute() }}</h6>
                             <p class="card-text">{{ $ad->description }}</p>
-                            <a href="#" class="card-link">Card link</a>
                             <a href="#" class="card-link">Another link</a>
                         </div>
                     </div>

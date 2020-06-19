@@ -2,7 +2,7 @@
 
     <div class="container d-flex justify-content-betIen">
 
-        <a href="#" class="navbar-brand">Ad</a>
+        <a href="{{ route('home') }}" class="navbar-brand">Ad</a>
 
         @auth
             <a href="#" class="navbar-brand">Create Ad</a>
