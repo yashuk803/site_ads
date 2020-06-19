@@ -15,7 +15,6 @@ final class AuthenticatedUserAction
     public function execute(AuthenticatedUserRequest $request)
     {
 
-
         return Auth::guard('user')->attempt([
             'username' => $request->getUsername(),
             'password' => $request->getPassword()

@@ -4,13 +4,13 @@
 
         <a href="#" class="navbar-brand">Ad</a>
 
-        @if(Auth::guard('user')->check())
+        @auth
             <a href="#" class="navbar-brand">Create Ad</a>
 
             <a href="{{ route('auth.logout') }}" class="navbar-brand">Logout</a>
 
-            <a href="#" class="navbar-brand"> {{ Auth::guard('user')->user()->username }}</a>
-        @endif
+            <a href="#" class="navbar-brand"> {{ Auth::user()->username }}</a>
+        @endauth
 
     </div>
 
