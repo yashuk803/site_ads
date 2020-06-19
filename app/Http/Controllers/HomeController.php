@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Entities\Ad;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -13,7 +14,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $ads = Ad::latest()->paginate(5);
+
+        return view('home',compact('ads'));
     }
 
 }

@@ -2,8 +2,8 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
+use App\Entities\Ad;
 use App\Entities\User;
-use Illuminate\Support\Str;
 use Faker\Generator as Faker;
 
 /*
@@ -17,10 +17,11 @@ use Faker\Generator as Faker;
 |
 */
 
-$factory->define(User::class, function (Faker $faker) {
+$factory->define(Ad::class, function (Faker $faker) {
     return [
-        'username' => $faker->unique()->word,
-        'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-        'remember_token' => Str::random(10),
+        'author_id' => User::query()->inRandomOrder()->first()->id,
+        'description' => $faker->text(),
+        'title' => $faker->title(),
+        'created_at' => $faker->dateTime(),
     ];
 });
