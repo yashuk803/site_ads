@@ -7,19 +7,13 @@
                 <div class="pull-left">
                     <h3>Ads</h3>
                 </div>
-                <div class="pull-right">
-                    <a class="btn btn-success">Add Ad</a>
-                </div>
+                @auth
+                    <div class="pull-right">
+                        <a href="{{ route('create') }}" class="btn btn-success">Add Ad</a>
+                    </div>
+                @endauth
             </div>
         </div>
-
-        @if ($message = Session::get('success'))
-            <div class="alert alert-success">
-                <p>{{ $message }}</p>
-            </div>
-        @endif
-
-
 
         <div class="row">
 
@@ -29,17 +23,23 @@
                     <div class="card" style="margin-bottom: 10px">
                         <div class="card-body" style="padding: 10px;">
 
-                            <h5 class="card-title"> <a target="_blank" href="{{ route('ad.show', ['id' => $ad->id]) }}">{{ $ad->title }}</a></h5>
-                            <h6 class="card-subtitle mb-2 text-muted">{{ $ad->author->username }} / {{ $ad->getFromDateAttribute() }}</h6>
+                            <h5 class="card-title"><a target="_blank"
+                                                      href="{{ route('show', ['id' => $ad->id]) }}">{{ $ad->title }}</a>
+                            </h5>
+                            <h6 class="card-subtitle mb-2 text-muted">{{ $ad->author->username }}
+                                / {{ $ad->getFromDateAttribute() }}</h6>
                             <p class="card-text">{{ $ad->description }}</p>
-                            <a href="#" class="card-link">Another link</a>
+                            @auth
+                                @if(Auth::user()->id === $ad->author_id)
+                            <a href="{{ route('edit', ['id' => $ad->id]) }}" class="card-link">Edit</a>
+                                @endif
+                            @endauth
+
                         </div>
                     </div>
                 </div>
 
             @endforeach
-
-
 
 
         </div>

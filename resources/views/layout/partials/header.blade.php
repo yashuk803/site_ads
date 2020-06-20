@@ -1,15 +1,15 @@
 <section class="jumbotron">
     <div class="container">
-        <h1 class="jumbotron-heading">Login</h1>
+
 
         @auth
-            Welcome
+            <h1> Welcome {{ Auth::user()->username }} </h1>
         @else
 
+            <h1 class="jumbotron-heading">Login</h1>
 
 
-
-            <form method="post" action="{{ route('auth.login') }}">
+            <form method="post" action="{{ route('login') }}">
                 @csrf
                 <div class="form-group">
                     <label for="username">Username:</label>

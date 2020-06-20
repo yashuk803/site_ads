@@ -35,6 +35,20 @@
                     {{ $ad->getFromDateAttribute() }}
                 </div>
             </div>
+            <div class="col-sm-12">
+                <div class="row">
+                    <div class="col-sm-6">
+                        @auth
+                            @if(Auth::user()->id === $ad->author_id)
+                        <a href="{{ route('edit', ['id' => $ad->id]) }}" class="btn btn-info">Edit</a>
+                        <a href="{{ route('delete', ['id' => $ad->id]) }}" class="btn btn-danger">Delete</a>
+                            @endif
+                        @endauth
+                    </div>
+                </div>
+            </div>
+
+
         </div>
     </div>
 

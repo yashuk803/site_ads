@@ -16,8 +16,8 @@ interface AdRepository
 
     public function getById(int $id): Ad;
 
-    public function save(Ad $tweet): Ad;
+    public function save(Ad $ad): Ad;
 
-    public function delete(Ad $tweet): ?bool;
+    public function delete(Ad $ad): ?bool;
 
 }

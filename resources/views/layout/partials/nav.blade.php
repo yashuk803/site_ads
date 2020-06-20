@@ -7,9 +7,8 @@
         @auth
             <a href="#" class="navbar-brand">Create Ad</a>
 
-            <a href="{{ route('auth.logout') }}" class="navbar-brand">Logout</a>
+            <a href="{{ route('logout') }}" class="navbar-brand">Logout</a>
 
-            <a href="#" class="navbar-brand"> {{ Auth::user()->username }}</a>
         @endauth
 
     </div>

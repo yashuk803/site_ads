@@ -5,11 +5,13 @@ declare(strict_types=1);
 namespace App\Actions\Ad;
 
 use App\Actions\GetByIdRequest;
+use App\Entities\Ad;
 use App\Exceptions\AdNotFoundException;
 use App\Repositories\Contracts\AdRepository;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Facades\Auth;
 
-final class AdViewAction
+final class CreateAdAction
 {
     private $adRepository;
 
@@ -19,13 +21,15 @@ final class AdViewAction
         $this->adRepository = $adRepository;
     }
 
-    public function execute(GetByIdRequest $request)
+    public function execute(CreateRequest $request): Ad
     {
-        try {
-            $ad = $this->adRepository->getById($request->getId());
-        } catch (ModelNotFoundException $ex) {
-            throw new AdNotFoundException();
-        }
+        $ad = new Ad();
+        $ad->author_id = Auth::id();
+        $ad->title = $request->getTitle();
+        $ad->description = $request->getDescription();
+
+        $ad = $this->adRepository->save($ad);
+
         return $ad;
     }
 }

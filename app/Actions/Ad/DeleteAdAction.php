@@ -1,15 +1,15 @@
 <?php
 
 declare(strict_types=1);
-
 namespace App\Actions\Ad;
 
-use App\Actions\GetByIdRequest;
 use App\Exceptions\AdNotFoundException;
 use App\Repositories\Contracts\AdRepository;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Facades\Auth;
 
-final class AdViewAction
+class DeleteAdAction
 {
     private $adRepository;
 
@@ -19,13 +19,20 @@ final class AdViewAction
         $this->adRepository = $adRepository;
     }
 
-    public function execute(GetByIdRequest $request)
+    public function execute(int $id): void
     {
+
         try {
-            $ad = $this->adRepository->getById($request->getId());
-        } catch (ModelNotFoundException $ex) {
+            $ad = $this->adRepository->getById($id);
+        } catch (ModelNotFoundException $exception) {
+
             throw new AdNotFoundException();
         }
-        return $ad;
+
+        if ($ad->author_id !== Auth::id()) {
+            throw new AuthorizationException();
+        }
+
+        $this->adRepository->delete($ad);
     }
 }
