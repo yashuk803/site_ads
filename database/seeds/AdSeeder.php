@@ -1,9 +1,9 @@
 <?php
 
-use App\Entities\User;
+use \App\Entities\Ad;
 use Illuminate\Database\Seeder;
 
-class UsersSeeder extends Seeder
+class AdSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,6 +12,6 @@ class UsersSeeder extends Seeder
      */
     public function run()
     {
-        factory(User::class, 2)->create();
+        factory(Ad::class, 10)->create();
     }
 }
